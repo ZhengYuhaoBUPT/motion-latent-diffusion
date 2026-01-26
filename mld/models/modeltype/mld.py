@@ -18,9 +18,13 @@ from mld.models.architectures import (
     vposert_vae,
 )
 from mld.models.losses.mld import MLDLosses
+
+# comment out when not use dino loss
 # add the dino loss
-from mld.models.losses.dino_loss import DinoVAELoss
+# from mld.models.losses.dino_loss import DinoVAELoss
+
 from mld.models.modeltype.base import BaseModel
+
 from mld.utils.temos_utils import remove_padding
 
 from .base import BaseModel
@@ -108,8 +112,9 @@ class MLD(BaseModel):
             for key in ["train", "test", "val"]
         }
 
-        # add dino loss
-        self.dino_loss = DinoVAELoss(cfg)
+        # # comment out when not use dino loss
+        # # add dino loss
+        # self.dino_loss = DinoVAELoss(cfg)
 
         self.metrics_dict = cfg.METRIC.TYPE
         self.configure_metrics()
@@ -838,7 +843,7 @@ class MLD(BaseModel):
 
             loss = self.losses[split].update(rs_set)
 
-
+            # comment out when not use dino loss
             # compute dino loss and add to total loss
             if self.stage == "vae":
                 dino_l, dino_logs = self.dino_loss(rs_set)

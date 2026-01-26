@@ -74,9 +74,9 @@ model:
 
 # Logger configuration
 LOGGER:
-  SACE_CHECKPOINT_EPOCH: 200
+  SACE_CHECKPOINT_EPOCH: 20
   LOG_EVERY_STEPS: 1
-  VAL_EVERY_STEPS: 200
+  VAL_EVERY_STEPS: 20
   TENSORBOARD: True
   WANDB:
     PROJECT: Motion-Latent-Diffusion
