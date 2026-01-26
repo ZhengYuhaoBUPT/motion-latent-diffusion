@@ -138,7 +138,7 @@ def main():
         # ddp_strategy = DDPStrategy(find_unused_parameters=False)
         ddp_strategy = "ddp"
     else:
-        ddp_strategy = None
+        ddp_strategy = "auto" # for single gpu or cpu
 
     # trainer
     trainer = pl.Trainer(

@@ -1,4 +1,4 @@
-NAME: 1222_PELearn_VAE_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01 # Experiment name
+NAME: VAE_DINO # Experiment name
 DEBUG: False # Debug mode
 ACCELERATOR: 'gpu' # Devices optioncal: “cpu”, “gpu”, “tpu”, “ipu”, “hpu”, “mps, “auto”
 DEVICE: [0] # Index of gpus eg. [0] or [0,1,2,3]
@@ -54,6 +54,8 @@ LOSS:
   LAMBDA_CROSS: 1.0 # Lambda for reconstruction Losses
   LAMBDA_CYCLE: 0.0 # Lambda for cycle Losses
   LAMBDA_PRIOR: 0.0
+  LAMBDA_PERCEPTUAL: 1.0
+  DINO_CKPT: experiments/dino-epoch=099.ckpt
   DIST_SYNC_ON_STEP: False # Sync Losses on step when distributed trained
 
 # Model Configuration
@@ -77,6 +79,6 @@ LOGGER:
   VAL_EVERY_STEPS: 200
   TENSORBOARD: True
   WANDB:
-    PROJECT: Motion-Latent-Diffusion # Wandb project name
+    PROJECT: Motion-Latent-Diffusion
     OFFLINE: False
     RESUME_ID: null
