@@ -8,6 +8,7 @@ TRAIN:
   #---------------------------------
   STAGE: vae # stage "vae" or "diffusion", "vae_diffusion"
   #---------------------------------
+  MARK: 'dino' # choose from 'dino' 'Norm'
   ABLATION:
     SKIP_CONNECT: True
     PE_TYPE: mld
@@ -31,7 +32,7 @@ EVAL:
 
 # Test Configuration
 TEST:
-  CHECKPOINTS: '' # Pretrained model path
+  CHECKPOINTS: experiments/mld/VAE_DINO/checkpoints/epoch=499.ckpt # Pretrained model path
   DATASETS: ['humanml3d'] # training datasets
   SPLIT: test
   BATCH_SIZE: 32 # training Batch size

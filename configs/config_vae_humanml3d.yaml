@@ -7,6 +7,7 @@ DEVICE: [0] # Index of gpus eg. [0] or [0,1,2,3]
 TRAIN:
   #---------------------------------
   STAGE: vae # stage "vae" or "diffusion", "vae_diffusion"
+  MARK: 'Norm' # choose from 'dino' 'Norm'
   #---------------------------------
   ABLATION:
     SKIP_CONNECT: True
@@ -31,7 +32,7 @@ EVAL:
 
 # Test Configuration
 TEST:
-  CHECKPOINTS: '' # Pretrained model path
+  CHECKPOINTS: experiments/mld/1222_PELearn_VAE_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01/checkpoints/epoch=499.ckpt # Pretrained model path
   DATASETS: ['humanml3d'] # training datasets
   SPLIT: test
   BATCH_SIZE: 32 # training Batch size
