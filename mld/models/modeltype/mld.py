@@ -19,10 +19,6 @@ from mld.models.architectures import (
 )
 from mld.models.losses.mld import MLDLosses
 
-# comment out when not use dino loss
-# add the dino loss
-# from mld.models.losses.dino_loss import DinoVAELoss
-
 from mld.models.modeltype.base import BaseModel
 
 from mld.utils.temos_utils import remove_padding
@@ -52,6 +48,11 @@ class MLD(BaseModel):
         self.guidance_scale = cfg.model.guidance_scale
         self.guidance_uncodp = cfg.model.guidance_uncondp
         self.datamodule = datamodule
+        self.mark = cfg.TRAIN.MARK
+
+        # when use dino loss add the dino loss
+        if self.mark == 'dino':
+            from mld.models.losses.dino_loss import DinoVAELoss
 
         try:
             self.vae_type = cfg.model.vae_type
@@ -112,9 +113,9 @@ class MLD(BaseModel):
             for key in ["train", "test", "val"]
         }
 
-        # # comment out when not use dino loss
-        # # add dino loss
-        # self.dino_loss = DinoVAELoss(cfg)
+        # when use dino loss add dino loss
+        if self.mark == 'dino':
+            self.dino_loss = DinoVAELoss(cfg)
 
         self.metrics_dict = cfg.METRIC.TYPE
         self.configure_metrics()
@@ -843,17 +844,17 @@ class MLD(BaseModel):
 
             loss = self.losses[split].update(rs_set)
 
-            # # comment out when not use dino loss
-            # # compute dino loss and add to total loss
-            # if self.stage == "vae":
-            #     dino_l, dino_logs = self.dino_loss(rs_set)
-            #     loss += dino_l
-            #     if split == "train":
-            #         for k, v in dino_logs.items():
-            #             self.log(f"train/dino_{k}", v, prog_bar=True)
-            #     elif split == "val":
-            #         for k, v in dino_logs.items():
-            #             self.log(f"val/dino_{k}", v, prog_bar=False, sync_dist=True)
+            # when use dino loss compute dino loss and add to total loss
+            if self.mark == "dino":
+                if self.stage == "vae":
+                    dino_l, dino_logs = self.dino_loss(rs_set)
+                    loss += dino_l
+                    if split == "train":
+                        for k, v in dino_logs.items():
+                            self.log(f"train/dino_{k}", v, prog_bar=True)
+                    elif split == "val":
+                        for k, v in dino_logs.items():
+                            self.log(f"val/dino_{k}", v, prog_bar=False, sync_dist=True)
 
                         
             if loss is None:

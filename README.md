@@ -121,7 +121,6 @@ Then, run the following command:
 python -m train --cfg configs/config_vae_humanml3d.yaml --cfg_assets configs/assets.yaml --batch_size 64 --nodebug 
 
 # when using the dino loss
-# first comment out the lines (3 parts) in motion-latent-diffusion/mld/models/modeltype/mld.py
 python -m train --cfg configs/config_vae_humanml3d_dino.yaml --cfg_assets configs/assets.yaml --batch_size 64 --nodebug
 ```
 
