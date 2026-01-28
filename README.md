@@ -251,6 +251,12 @@ If you want to visualize Latent Space in your model setting, you can run the fol
 
 ```
 python -m scripts.tsne --cfg configs/your_config.yaml
+
+# for the visualization of VAE
+python scripts/tsne_vae.py --cfg configs/config_vae_humanml3d.yaml
+
+# for the visualization of VAE for dino
+python scripts/tsne_vae.py --cfg configs/config_vae_humanml3d_dino.yaml
 ```
 
 **Note**: This only support action-to-motion models for now.
