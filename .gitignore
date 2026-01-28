@@ -50,7 +50,7 @@ dino_cache/
 tmp/
 
 # ==========================
-experiments/
+experiments/mld
 results/
 lightning_logs/
 

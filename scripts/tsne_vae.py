@@ -91,12 +91,7 @@ def draw_tsne(output_dir, latents, labels, title_suffix="", xlim=None, ylim=None
         xlim: tuple (min, max), 例如 (-100, 100)
         ylim: tuple (min, max), 例如 (-100, 100)
     """
-    if len(latents) == 0:
-        print("⚠️ No samples extracted! Check your dataset or keywords.")
-        return
-
-    print(f"🎨 Computing t-SNE for {len(latents)} samples...")
-    tsne = TSNE(n_components=2, verbose=1, random_state=42, init='pca', learning_rate='auto')
+    tsne = TSNE(n_components=2, verbose=1, random_state=42, learning_rate='auto') # , init='pca'
     z_embedded = tsne.fit_transform(latents)
 
     df = pd.DataFrame()
@@ -120,15 +115,10 @@ def draw_tsne(output_dir, latents, labels, title_suffix="", xlim=None, ylim=None
         legend="full"
     )
     
-    # 👇【新增功能】设置坐标轴范围
     if xlim is not None:
         plt.xlim(xlim)
     if ylim is not None:
         plt.ylim(ylim)
-        
-    # 可选：如果你希望去掉坐标轴刻度（t-SNE 的绝对数值通常没有意义，去掉更美观）
-    # plt.xticks([])
-    # plt.yticks([])
     
     title = f"VAE Latent Space t-SNE\n{title_suffix}"
     plt.title(title, fontsize=15)
