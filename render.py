@@ -68,7 +68,7 @@ def render_cli() -> None:
             if item.endswith(".npy") and not item.endswith("_mesh.npy"):
                 paths.append(os.path.join(cfg.RENDER.DIR, item))
 
-        print(f"begin to render for {paths[0]}")
+        # print(f"begin to render for {paths[0]}")
 
     import numpy as np
 

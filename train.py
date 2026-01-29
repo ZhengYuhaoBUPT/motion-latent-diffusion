@@ -166,7 +166,8 @@ def main():
         logger.info("Loading pretrain vae from {}".format(
             cfg.TRAIN.PRETRAINED_VAE))
         state_dict = torch.load(cfg.TRAIN.PRETRAINED_VAE,
-                                map_location="cpu")["state_dict"]
+                                map_location="cpu",
+                                weights_only=False)["state_dict"]
         # extract encoder/decoder
         from collections import OrderedDict
         vae_dict = OrderedDict()

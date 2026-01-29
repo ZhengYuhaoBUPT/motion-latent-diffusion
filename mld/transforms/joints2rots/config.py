@@ -1,5 +1,6 @@
 import numpy as np
 from mld.utils.joints import mmm_joints, smplh2mmm_indexes
+import os
 
 # Map joints Name to SMPL joints idx
 JOINT_MAP = {
@@ -117,3 +118,10 @@ GMM_MODEL_DIR = "/apdcephfs/share_1227775/shingxchen/AIMotion/TMOSTData/deps/smp
 SMPL_MEAN_FILE = "/apdcephfs/share_1227775/shingxchen/AIMotion/TMOSTData/deps/smpl_models/neutral_smpl_mean_params.h5"
 # for collsion
 Part_Seg_DIR = "/apdcephfs/share_1227775/shingxchen/AIMotion/TMOSTData/deps/smpl_models/smplx_parts_segm.pkl"
+
+local_smpl = "/home/xierenchao/storage/Private/zyh/Projectzyh/THU/motion-latent-diffusion/deps/smpl/smpl_models"
+
+SMPL_MODEL_DIR   = local_smpl
+GMM_MODEL_DIR    = local_smpl
+SMPL_MEAN_FILE   = os.path.join(local_smpl, "neutral_smpl_mean_params.h5")
+Part_Seg_DIR     = os.path.join(local_smpl, "smplx_parts_segm.pkl")

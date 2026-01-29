@@ -186,6 +186,9 @@ Run the following command to render SMPL using blender:
 
 ```
 YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video --joint_type=HumanML3D
+
+# myself use /opt/blender-2.93/blender
+/opt/blender-2.93/blender   --background   --python render.py   --   --cfg ./configs/render_mld.yaml   --dir results/mld/1222_PELearn_Diff_Latent1_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01/samples_2026-01-29-15-06-45   --mode video   --joint_type HumanML3D
 ```
 
 optional parameters:
