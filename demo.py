@@ -127,7 +127,8 @@ def main():
     # loading checkpoints
     logger.info("Loading checkpoints from {}".format(cfg.TEST.CHECKPOINTS))
     state_dict = torch.load(cfg.TEST.CHECKPOINTS,
-                            map_location="cpu")["state_dict"]
+                            map_location="cpu",
+                            weights_only=False)["state_dict"]
     # # remove mismatched and unused params
     # from collections import OrderedDict
     # new_state_dict = OrderedDict()

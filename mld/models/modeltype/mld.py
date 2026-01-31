@@ -848,7 +848,7 @@ class MLD(BaseModel):
             if self.mark == "dino":
                 if self.stage == "vae":
                     dino_l, dino_logs = self.dino_loss(rs_set)
-                    loss += dino_l
+                    loss = dino_l # 20260128 delete mse loss
                     if split == "train":
                         for k, v in dino_logs.items():
                             self.log(f"train/dino_{k}", v, prog_bar=True)

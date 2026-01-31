@@ -3,7 +3,7 @@
 ####################################
 
 # Experiment name, more details in Section 'Experiment Name Explanation'
-NAME: 1222_PELearn_Diff_Latent1_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01
+NAME: mld_stage2
 # Debug mode. Set to True will enter the debug mode, then the program will
 # 1. use a tiny dataset for trianing and evaluation
 # 2. validate more intensively
@@ -31,7 +31,8 @@ TRAIN:
   END_EPOCH: 2000
 
   RESUME: '' # Resume training from this path
-  PRETRAINED_VAE: experiments/mld/1222_PELearn_VAE_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01/checkpoints/epoch=699.ckpt # vae model path
+  PRETRAINED_VAE: experiments/mld/VAE_STAGE2/checkpoints/epoch=299.ckpt
+  # experiments/mld/1222_PELearn_VAE_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01/checkpoints/epoch=699.ckpt # vae model path
   OPTIM:
     TYPE: AdamW # Optimizer type
     LR: 1e-4 # Learning rate
@@ -53,7 +54,10 @@ EVAL:
 # The following are testing settings
 #####################################
 TEST:
-  CHECKPOINTS: ./checkpoints/mld_humanml3d_checkpoint/1222_mld_humanml3d_FID041.ckpt # Pretrained model path
+  CHECKPOINTS: experiments/mld/1222_PELearn_Diff_Latent1_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01/checkpoints/epoch=799.ckpt
+  # CHECKPOINTS: experiments/mld/MLD_DINO/checkpoints/epoch=799.ckpt
+  # CHECKPOINTS: experiments/mld/mld_stage2/checkpoints/epoch=799.ckpt
+  # ./checkpoints/mld_humanml3d_checkpoint/1222_mld_humanml3d_FID041.ckpt # Pretrained model path
   DATASETS: ['humanml3d'] # training datasets
   SPLIT: test
   BATCH_SIZE: 1 # training Batch size

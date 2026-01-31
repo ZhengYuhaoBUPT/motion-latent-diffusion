@@ -120,8 +120,13 @@ Then, run the following command:
 # when not using the dino loss
 python -m train --cfg configs/config_vae_humanml3d.yaml --cfg_assets configs/assets.yaml --batch_size 64 --nodebug 
 
-# when using the dino loss
+# 2026.01.22 when using the dino loss
 python -m train --cfg configs/config_vae_humanml3d_dino.yaml --cfg_assets configs/assets.yaml --batch_size 64 --nodebug
+
+# 2026.01.28 when using two stage
+python -m train --cfg configs/config_vae_humanml3d.yaml --cfg_assets configs/assets.yaml --batch_size 64 --nodebug 
+python -m train --cfg configs/config_vae_humanml3d_stage2.yaml --cfg_assets configs/assets.yaml --batch_size 64 --nodebug 
+
 ```
 
 
@@ -188,7 +193,8 @@ Run the following command to render SMPL using blender:
 YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video --joint_type=HumanML3D
 
 # myself use /opt/blender-2.93/blender
-/opt/blender-2.93/blender   --background   --python render.py   --   --cfg ./configs/render_mld.yaml   --dir results/mld/1222_PELearn_Diff_Latent1_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01/samples_2026-01-29-15-06-45   --mode video   --joint_type HumanML3D
+# use the dir obtained by Demo
+/opt/blender-2.93/blender   --background   --python render.py   --   --cfg ./configs/render_mld.yaml   --dir results/mld/mld_stage2/mld_2stage   --mode video   --joint_type HumanML3D
 ```
 
 optional parameters:

@@ -124,7 +124,7 @@ class BaseModel(LightningModule):
             if 'text_encoder' not in k:
                 new_state_dict[k] = v
 
-        super().load_state_dict(new_state_dict, strict)
+        super().load_state_dict(new_state_dict, strict=False)
 
     def configure_optimizers(self):
         return {"optimizer": self.optimizer}

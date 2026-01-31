@@ -182,7 +182,8 @@ def main():
             cfg.TRAIN.PRETRAINED))
         logger.info("Attention! VAE will be recovered")
         state_dict = torch.load(cfg.TRAIN.PRETRAINED,
-                                map_location="cpu")["state_dict"]
+                                map_location="cpu",
+                                weights_only=False)["state_dict"]
         # remove mismatched and unused params
         from collections import OrderedDict
 
